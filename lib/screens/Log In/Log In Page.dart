@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:football_picks/screens/Log%20In/Create%20New%20Account.dart';
+import 'package:football_picks/screens/homepage.dart';
 import '../../Comm/genTextFormField.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,8 +12,10 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-final _userId = TextEditingController();
+final _username = TextEditingController();
+String username ="";
 final _password = TextEditingController();
+String password ="";
 
 class _LoginPageState extends State<LoginPage> {
   late StreamSubscription<bool> subscription;
@@ -43,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               getTextFormField(
-                controller: _userId,
+                controller: _username,
                 hintName: 'Username / E-Mail',
                 icon: Icons.man,
                 isObscureText: false,
@@ -57,7 +60,17 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 23),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  username=_username.text;
+                  password=_password.text;
+
+                  FirebaseAuth.instance.signInWithEmailAndPassword(email: username, password: password);
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Homepage()),
+                  );
+                },
                 style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all(Colors.lightGreen.shade500),

@@ -12,8 +12,10 @@ class CreateNewAccount extends StatefulWidget {
 
 class _CreateNewAccountState extends State<CreateNewAccount> {
   final _createUserName = TextEditingController();
+  String username ="";
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
+  String password ="";
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,10 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
               const SizedBox(height: 24),
               TextButton(
                 onPressed: () {
+                  username=_createUserName.text;
+                  password=_password.text;
+
+                  FirebaseAuth.instance.createUserWithEmailAndPassword(email: username, password: password);
                   //TODO Logic to either create a user with an e mail
                   //or a user with a username/password
                 },
