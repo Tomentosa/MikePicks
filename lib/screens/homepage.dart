@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:football_picks/main.dart';
+import 'package:football_picks/screens/Log%20In/Log%20In%20Page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -27,6 +29,11 @@ class _HomepageState extends State<Homepage> {
             ),
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+              setState(() {});
             },
             child: Text("Sign Out"),
           )

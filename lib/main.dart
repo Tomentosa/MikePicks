@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:football_picks/screens/homepage.dart';
 import 'package:football_picks/screens/Log%20In/Log%20In%20Page.dart';
+import 'package:football_picks/screens/loadingPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +53,7 @@ class LandingPage extends StatelessWidget {
                       return Homepage();
                     }
                   }else{
-                    return Text("Somthing went wrong");
+                    return LoadingPage();
                   }
             });
 
@@ -60,7 +61,7 @@ class LandingPage extends StatelessWidget {
 
           return Scaffold(
             body: Center(
-              child: Text("Checking Authentication...."),
+              child: Text("Connecting to MikePicks...."),
             ),
           );
         });
